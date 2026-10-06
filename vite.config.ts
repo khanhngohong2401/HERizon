@@ -6,6 +6,7 @@ import { defineConfig, Plugin } from 'vite';
 
 function imagePersistencePlugin(): Plugin {
   return {
+      base: '/HERizon/',
     name: 'image-persistence-plugin',
     configureServer(server) {
       server.middlewares.use('/api/save-static-image', (req, res) => {
