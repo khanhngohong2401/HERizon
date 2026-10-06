@@ -147,14 +147,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: 'mem-1',
     studentId: '2452498',
     name: 'Ngô Hồng Khánh',
-    imageSrc: '/khánh.jpg',
+    imageSrc: '/khanh.jpg',
     altImageSrc: '/kh%C3%A1nh.jpg',
   },
   {
     id: 'mem-2',
     studentId: '2453021',
     name: 'Đặng Thy Phương',
-    imageSrc: '/phương.jpg',
+    imageSrc: '/phuong.jpg',
     altImageSrc: '/ph%C6%B0%C6%A1ng.jpg',
   },
   {
@@ -175,7 +175,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: 'mem-5',
     studentId: '2453241',
     name: 'Trần Hạnh Tiên',
-    imageSrc: '/Tiên.png',
+    imageSrc: '/tien.png',
     altImageSrc: '/Ti%C3%AAn.png',
   },
 ];
