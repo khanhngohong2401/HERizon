@@ -6,7 +6,6 @@ import { defineConfig, Plugin } from 'vite';
 
 function imagePersistencePlugin(): Plugin {
   return {
-      base: '/HERizon/',
     name: 'image-persistence-plugin',
     configureServer(server) {
       server.middlewares.use('/api/save-static-image', (req, res) => {
@@ -49,6 +48,7 @@ function imagePersistencePlugin(): Plugin {
 
 export default defineConfig(() => {
   return {
+    base: '/HERizon/', // <--- Đưa base ra đúng chỗ cấu hình chung ở đây!
     plugins: [react(), tailwindcss(), imagePersistencePlugin()],
     resolve: {
       alias: {
