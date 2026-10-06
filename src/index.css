@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  /* Flat 2D Poster Color Tokens */
+  --teal: #3FC7C2;
+  --purple: #7A3B9E;
+  --orange: #F2984A;
+  --pink: #E54BA0;
+  --cream: #FBE8C2;
+  --navy: #1E2B3C;
+  --white: #FFFFFF;
+  --yellow: #FBD449;
+
+  /* Vietnamese-perfect font pairings */
+  --font-poster: 'Be Vietnam Pro', 'Montserrat', system-ui, sans-serif;
+  --font-sub: 'Baloo 2', 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', 'Montserrat', system-ui, sans-serif;
+
+  color: var(--navy);
+  background-color: var(--cream);
+  font-family: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--navy);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Classes */
+.font-poster {
+  font-family: var(--font-poster);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.font-sub {
+  font-family: var(--font-sub);
+  font-weight: 700;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* 2D Flat Vector Card & Button Styles: Thick Navy Outline & Hard Shadow */
+.flat-box {
+  background-color: var(--white);
+  border: 3.5px solid var(--navy);
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px var(--navy);
+}
+
+.flat-box-cream {
+  background-color: var(--cream);
+  border: 3.5px solid var(--navy);
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px var(--navy);
+}
+
+.flat-box-teal {
+  background-color: var(--teal);
+  border: 3.5px solid var(--navy);
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px var(--navy);
+}
+
+.flat-box-purple {
+  background-color: var(--purple);
+  border: 3.5px solid var(--navy);
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px var(--navy);
+  color: var(--white);
+}
+
+.flat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sub);
+  font-weight: 800;
+  border: 3px solid var(--navy);
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0px var(--navy);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.flat-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--navy);
+}
+
+.flat-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--navy);
+}
+
+.flat-btn-purple {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.flat-btn-white {
+  background-color: var(--white);
+  color: var(--navy);
+}
+
+.flat-btn-orange {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.flat-btn-pink {
+  background-color: var(--pink);
+  color: var(--white);
+}
+
+/* Organic Cloud Callout Shape */
+.cloud-callout {
+  background: var(--white);
+  border: 3.5px solid var(--navy);
+  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+  box-shadow: 4px 4px 0px var(--navy);
+  padding: 1.5rem 2rem;
+  position: relative;
+}
+
+/* Subtle Scattered Paw Print Background Pattern */
+.bg-paw-pattern {
+  background-image: radial-gradient(var(--navy) 1.5px, transparent 1.5px),
+    radial-gradient(var(--navy) 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.06;
+}
+
+/* Section Bottom Solid Stripes */
+.stripe-bottom-purple {
+  border-bottom: 14px solid var(--purple);
+  border-top: 3.5px solid var(--navy);
+}
+
+.stripe-bottom-teal {
+  border-bottom: 14px solid var(--teal);
+  border-top: 3.5px solid var(--navy);
+}
+
+.stripe-bottom-orange {
+  border-bottom: 14px solid var(--orange);
+  border-top: 3.5px solid var(--navy);
+}
+
+.stripe-bottom-cream {
+  border-bottom: 14px solid var(--cream);
+  border-top: 3.5px solid var(--navy);
+}
+
+/* Custom scroll reveal */
+.fade-up {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

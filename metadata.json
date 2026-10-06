@@ -1,0 +1,6 @@
+{
+  "name": "Em Ấm — Góp chút cũ, may thành chút thương",
+  "description": "Dự án Em Ấm — Tái chế vải cũ thành nệm ấm cho thú cưng với phong cách 2D Flat Vector vui tươi và bản đồ trạm cứu hộ đầy đủ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
