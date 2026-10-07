@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { GUIDES } from '../data/mockData';
 import { GuideItem } from '../types';
 import { Play, AlertTriangle, X } from 'lucide-react';
@@ -103,9 +104,9 @@ export function Guide() {
       </div>
 
       {/* Video Modal with 2D Comic Style */}
-      {selectedGuide && (
+      {selectedGuide && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#1E2B3C]/80 backdrop-blur-xs animate-in fade-in"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#1E2B3C]/80 backdrop-blur-xs animate-in fade-in"
           onClick={() => setSelectedGuide(null)}
           role="dialog"
           aria-modal="true"
@@ -163,7 +164,8 @@ export function Guide() {
               </ul>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Solid Bottom Stripe before Rescue Stations (cream) */}
