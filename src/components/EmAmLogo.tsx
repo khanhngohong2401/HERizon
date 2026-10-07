@@ -20,22 +20,10 @@ export function EmAmLogo({ className = '', size = 'md', showSubtitle = true }: E
     return (
       <div className={`inline-flex items-center select-none ${className}`}>
         <img
-          src="/LOGO  (1).png"
+          src={`${import.meta.env.BASE_URL}images/logo.png`}
           alt="Em Ấm — Gom chút cũ, may thành chút thương"
           className={`${heightClasses[size]} w-auto object-contain transition-transform hover:scale-105`}
-          onError={(e) => {
-            // Try encoded URL fallback, then SVG fallback
-            const target = e.currentTarget;
-            if (!target.dataset.triedEncoded) {
-              target.dataset.triedEncoded = 'true';
-              target.src = '/LOGO%20%20(1).png';
-            } else if (!target.dataset.triedSingleSpace) {
-              target.dataset.triedSingleSpace = 'true';
-              target.src = '/LOGO (1).png';
-            } else {
-              setImgFailed(true);
-            }
-          }}
+          onError={() => setImgFailed(true)}
         />
       </div>
     );

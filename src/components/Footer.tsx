@@ -1,40 +1,7 @@
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
-import { EmAmLogo } from './EmAmLogo';
 import { FACEBOOK_PAGE_URL } from '../data/mockData';
 import { ExternalLink, ArrowUp } from 'lucide-react';
-import { getStoredImage, saveStoredImage } from '../utils/imageStore';
 
 export function Footer() {
-  const [footerImg, setFooterImg] = useState<string>(() =>
-    getStoredImage('em_am_footer_logo', '/HERizon - FACEBOOK.png')
-  );
-  const [imgError, setImgError] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const stored = getStoredImage('em_am_footer_logo');
-    if (stored) {
-      setFooterImg(stored);
-      setImgError(false);
-    }
-  }, []);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setFooterImg(result);
-          setImgError(false);
-          saveStoredImage('em_am_footer_logo', 'HERizon - FACEBOOK.png', result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -44,67 +11,43 @@ export function Footer() {
       className="bg-[#1E2B3C] text-[#FBE8C2] border-t-[4px] border-[#1E2B3C] relative overflow-hidden"
       aria-label="Footer"
     >
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
-
       {/* Accent Top Decorative Stripe */}
       <div className="h-2 w-full bg-gradient-to-r from-[#F2984A] via-[#E54BA0] to-[#3FC7C2]" />
 
       <div className="max-w-[1240px] mx-auto px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center justify-between pb-10 border-b-2 border-[#FBE8C2]/15">
-          {/* Left: Fixed "HERizon - FACEBOOK.png" Image & Project Description */}
-          <div className="md:col-span-7 flex flex-col items-start gap-3">
-            {/* Permanent Fixed Image Frame */}
-            <div
-              onClick={() => {
-                if (imgError) fileInputRef.current?.click();
-              }}
-              className="p-2 sm:p-2.5 bg-white rounded-2xl border-2 border-[#FBE8C2] shadow-[4px_4px_0px_#F2984A] overflow-hidden max-w-full cursor-pointer"
-              title={imgError ? 'Bấm để chọn file HERizon - FACEBOOK.png' : 'HERizon Facebook'}
-            >
-              {!imgError && footerImg ? (
-                <img
-                  src={footerImg}
-                  alt="HERizon Facebook Em Ấm"
-                  className="max-h-24 sm:max-h-32 w-auto max-w-full object-contain rounded-xl"
-                  onError={() => setImgError(true)}
-                />
-              ) : (
-                <div className="flex flex-col items-center">
-                  <EmAmLogo size="md" showSubtitle={true} />
-                  <span className="font-sub font-bold text-[10px] text-[#7A3B9E] mt-1 bg-[#FBE8C2] px-2 py-0.5 rounded-full border border-[#1E2B3C]">
-                    Bấm để chọn file HERizon - FACEBOOK.png
-                  </span>
-                </div>
-              )}
+          {/* Left: Em Ấm Logo / Custom Image & Slogan */}
+          <div className="md:col-span-6 flex flex-col items-start gap-3">
+            {/* Ảnh cố định (public/images/herizon-fb.jpg) */}
+            <div className="p-2.5 bg-white rounded-2xl border-2 border-[#FBE8C2] shadow-[4px_4px_0px_#F2984A]">
+              <img
+                src={`${import.meta.env.BASE_URL}images/herizon-fb.jpg`}
+                alt="Em Ấm - Đệm êm trao em, sưởi ấm bốn chân"
+                className="block w-full max-w-[380px] h-auto rounded-xl"
+              />
             </div>
 
-            <p className="font-body text-xs sm:text-sm font-medium text-[#FBE8C2]/85 max-w-[460px] mt-2 leading-relaxed">
+            <p className="font-body text-xs sm:text-sm font-medium text-[#FBE8C2]/85 max-w-[420px] mt-2 leading-relaxed">
               Dự án cộng đồng phi lợi nhuận hướng tới việc tái chế vải thừa thành những chiếc nệm ấm êm ái cho chó mèo được cứu hộ tại TP.HCM.
             </p>
           </div>
 
-          {/* Right: Quick Navigation & Social */}
-          <div className="md:col-span-5 flex flex-col md:items-end gap-4">
-            <div className="flex flex-wrap gap-2 font-sub font-bold text-xs uppercase">
-              <a href="#story" className="px-3 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
+          {/* Center / Right: Quick Navigation & Social */}
+          <div className="md:col-span-6 flex flex-col md:items-end gap-4">
+            <div className="flex flex-wrap gap-2.5 font-sub font-bold text-xs uppercase">
+              <a href="#story" className="px-3.5 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
                 Câu chuyện
               </a>
-              <a href="#guide" className="px-3 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
+              <a href="#guide" className="px-3.5 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
                 Cách làm nệm
               </a>
-              <a href="#stations" className="px-3 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
+              <a href="#stations" className="px-3.5 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
                 Trạm cứu hộ
               </a>
-              <a href="#team" className="px-3 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
+              <a href="#team" className="px-3.5 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
                 Thành viên
               </a>
-              <a href="#contact" className="px-3 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
+              <a href="#contact" className="px-3.5 py-1.5 rounded-full bg-[#FBE8C2]/10 hover:bg-[#FBE8C2] hover:text-[#1E2B3C] transition-all">
                 Liên hệ
               </a>
             </div>

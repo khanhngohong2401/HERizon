@@ -1,38 +1,9 @@
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
-import { EmAmLogo } from './EmAmLogo';
+import { useState } from 'react';
 import { Menu, X, Heart, ExternalLink } from 'lucide-react';
 import { FACEBOOK_PAGE_URL } from '../data/mockData';
-import { getStoredImage, saveStoredImage } from '../utils/imageStore';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [logoImg, setLogoImg] = useState<string>(() =>
-    getStoredImage('em_am_custom_logo')
-  );
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const stored = getStoredImage('em_am_custom_logo');
-    if (stored) {
-      setLogoImg(stored);
-    }
-  }, []);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setLogoImg(result);
-          saveStoredImage('em_am_custom_logo', 'LOGO (1).png', result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const navLinks = [
     { label: 'Câu chuyện', href: '#story' },
     { label: 'Cách làm nệm', href: '#guide' },
@@ -43,39 +14,20 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#1E2B3C] text-[#FBE8C2] border-b-[4px] border-[#1E2B3C] shadow-[0_4px_0px_rgba(0,0,0,0.15)] transition-all">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
-
       {/* Accent Top Decorative Stripe */}
       <div className="h-1.5 w-full bg-gradient-to-r from-[#F2984A] via-[#E54BA0] to-[#3FC7C2]" />
 
       <div className="max-w-[1360px] mx-auto px-3 sm:px-6 h-18 sm:h-20 flex items-center justify-between gap-2">
-        {/* Brand Home Button */}
+        {/* Nút Home: logo cố định (public/images/logo.png) */}
         <a
           href="#top"
-          className="flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white border-2 border-[#1E2B3C] shadow-[2.5px_2.5px_0px_#F2984A] hover:translate-x-0.5 hover:translate-y-0.5 transition-transform shrink-0"
+          className="shrink-0 flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white border-2 border-[#1E2B3C] shadow-[2.5px_2.5px_0px_#F2984A] hover:translate-x-0.5 hover:translate-y-0.5 transition-transform"
           aria-label="Về đầu trang Em Ấm"
         >
-          {logoImg ? (
-            <img
-              src={logoImg}
-              alt="Logo Em Ấm"
-              className="h-8 sm:h-9 w-auto max-w-[54px] object-contain rounded-md"
-            />
-          ) : (
-            <EmAmLogo size="sm" showSubtitle={false} className="h-8 sm:h-9" />
-          )}
-          <span className="font-poster text-lg sm:text-xl text-[#1E2B3C] tracking-tight leading-none whitespace-nowrap">
-            Em Ấm
-          </span>
+          <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Em Ấm" className="h-9 sm:h-11 w-auto object-contain" />
         </a>
 
-        {/* Desktop Navigation - Single-Line (Never Wraps) */}
+        {/* Desktop Navigation - Compact & Single-Line (Never Wraps) */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2 font-sub font-bold text-xs xl:text-sm whitespace-nowrap">
           {navLinks.map((link) => (
             <a
@@ -115,7 +67,7 @@ export function Navbar() {
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6 stroke-[3]" /> : <Menu className="w-6 h-6 stroke-[3]" />}
+          {mobileMenuOpen ? <X className="w-5 h-5 stroke-[3]" /> : <Menu className="w-5 h-5 stroke-[3]" />}
         </button>
       </div>
 

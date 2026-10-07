@@ -1,55 +1,16 @@
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
-import { ArrowRight, MapPin, Scissors, Heart, Camera } from 'lucide-react';
+import { ArrowRight, MapPin, Scissors, Heart } from 'lucide-react';
 import { Sparkle, SparkleCluster } from './Sparkle';
-import { DogAndCatOnBedIllustration } from './FlatIllustrations';
 import { PawScatterBackground } from './PawPattern';
-import { getStoredImage, saveStoredImage } from '../utils/imageStore';
 
 export function Hero() {
-  const [bedPhoto, setBedPhoto] = useState<string>(() =>
-    getStoredImage('em_am_bed_card_photo', '/may.jpg')
-  );
-  const [loadError, setLoadError] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    // Check if bedPhoto changed or if stored
-    const stored = getStoredImage('em_am_bed_card_photo');
-    if (stored) {
-      setBedPhoto(stored);
-      setLoadError(false);
-    }
-  }, []);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setBedPhoto(result);
-          setLoadError(false);
-          saveStoredImage('em_am_bed_card_photo', 'may.jpg', result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // Ảnh cố định (file nằm ở public/images/may.jpg)
+  const bedPhoto = `${import.meta.env.BASE_URL}images/may.jpg`;
 
   return (
     <section
       className="relative bg-[#3FC7C2] text-[#1E2B3C] pt-12 sm:pt-16 pb-20 sm:pb-24 border-b-[4px] border-[#1E2B3C] overflow-hidden"
       id="top"
     >
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
-
       {/* Low-opacity scattered paw-print pattern */}
       <PawScatterBackground />
 
@@ -112,7 +73,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Card: Fixed "may.jpg" image for "Gom chút cũ, may thành chút thương" */}
+          {/* Right Card: Allows Custom Photo Upload or Shows Dog & Cat illustration */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative p-6 sm:p-7 bg-white border-[3.5px] border-[#1E2B3C] rounded-3xl shadow-[7px_7px_0px_#1E2B3C] text-center max-w-[380px] w-full transform hover:-rotate-1 transition-transform group">
               {/* Cute top corner badge */}
@@ -120,32 +81,12 @@ export function Hero() {
                 100% Phi lợi nhuận
               </div>
 
-              {/* Permanent Bed Photo Frame using "may.jpg" */}
-              <div
-                onClick={() => {
-                  if (loadError) fileInputRef.current?.click();
-                }}
-                className="relative rounded-2xl bg-[#FBE8C2]/40 border-[2.5px] border-[#1E2B3C] overflow-hidden min-h-[200px] flex items-center justify-center shadow-inner cursor-pointer"
-                title={loadError ? 'Bấm để nạp ảnh may.jpg' : 'Ảnh nệm may'}
-              >
-                {!loadError && bedPhoto ? (
-                  <img
-                    src={bedPhoto}
-                    alt="Gom chút cũ, may thành chút thương"
-                    className="w-full h-[220px] object-cover"
-                    onError={() => setLoadError(true)}
-                  />
-                ) : (
-                  <div className="pt-2 pb-1 flex flex-col items-center justify-center">
-                    <DogAndCatOnBedIllustration size={190} />
-                    <span className="font-sub font-bold text-[11px] text-[#7A3B9E] mt-1 bg-white px-2.5 py-0.5 rounded-full border border-[#1E2B3C]">
-                      Bấm để chọn file may.jpg
-                    </span>
-                  </div>
-                )}
+              {/* Ảnh cố định */}
+              <div className="relative rounded-2xl border-[2.5px] border-[#1E2B3C] overflow-hidden h-[220px]">
+                <img src={bedPhoto} alt="Chó và mèo ngủ cùng nhau trên nệm êm" className="w-full h-full object-cover" />
               </div>
 
-              {/* Bottom Label */}
+              {/* Bottom Label requested */}
               <div className="mt-3.5 pt-3 border-t-2 border-dashed border-[#1E2B3C]/20 flex items-center justify-center gap-1.5 text-xs font-bold text-[#7A3B9E]">
                 <Heart className="w-3.5 h-3.5 text-[#E54BA0] fill-current" />
                 <span>Gom chút cũ, may thành chút thương</span>
