@@ -43,10 +43,6 @@ export function TeamMembers() {
                   />
                 </div>
 
-                <div className="inline-block px-3 py-1 rounded-full bg-white border-2 border-[#1E2B3C] font-body text-xs font-black text-[#7A3B9E] shadow-[2px_2px_0px_#1E2B3C] mb-2">
-                  MSSV: {member.studentId}
-                </div>
-
                 <h3 className="font-body text-base sm:text-lg font-black text-[#1E2B3C] leading-snug">
                   {member.name}
                 </h3>

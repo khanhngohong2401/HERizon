@@ -82,15 +82,15 @@ export function Footer() {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2 text-[11px]">
             <span className="font-bold text-[#F2984A]">Dự án thực hiện bởi:</span>
-            <span>2452498 Khánh</span>
+            <span>Khánh</span>
             <span>·</span>
-            <span>2453021 Phương</span>
+            <span>Phương</span>
             <span>·</span>
-            <span>2452673 Linh</span>
+            <span>Linh</span>
             <span>·</span>
-            <span>2453270 Trang</span>
+            <span>Trang</span>
             <span>·</span>
-            <span>2453241 Tiên</span>
+            <span>Tiên</span>
           </div>
         </div>
       </div>
