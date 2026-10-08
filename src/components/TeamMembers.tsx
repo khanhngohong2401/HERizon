@@ -2,6 +2,15 @@ import { TEAM_MEMBERS } from '../data/mockData';
 import { Sparkle, SparkleCluster } from './Sparkle';
 import { PawScatterBackground } from './PawPattern';
 
+// Link Facebook của từng thành viên (khớp với id trong data/mockData.ts)
+const FACEBOOK_LINKS: Record<string, string> = {
+  'mem-1': 'https://web.facebook.com/imurkeios',               // Khánh
+  'mem-2': 'https://web.facebook.com/angthyphuong.2024',        // Phương
+  'mem-3': 'https://web.facebook.com/thuyslinh.06',             // Linh
+  'mem-4': 'https://web.facebook.com/httpddcd',                 // Trang
+  'mem-5': 'https://web.facebook.com/hanhtien.tran.02062006',   // Tiên
+};
+
 export function TeamMembers() {
   return (
     <section
@@ -30,9 +39,13 @@ export function TeamMembers() {
         {/* Ảnh cố định: lấy từ avatarUrl trong data/mockData.ts (thư mục public/images/team) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-7">
           {TEAM_MEMBERS.map((member) => (
-            <div
+            <a
               key={member.id}
-              className="bg-[#FBE8C2] rounded-3xl p-5 border-[3.5px] border-[#1E2B3C] shadow-[5px_5px_0px_#1E2B3C] flex flex-col justify-between hover:-translate-y-1.5 transition-all text-center"
+              href={FACEBOOK_LINKS[member.id]}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Mở Facebook của ${member.name}`}
+              className="bg-[#FBE8C2] rounded-3xl p-5 border-[3.5px] border-[#1E2B3C] shadow-[5px_5px_0px_#1E2B3C] flex flex-col justify-between cursor-pointer transition-transform duration-200 hover:scale-105 hover:-translate-y-1.5 focus-visible:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#7A3B9E] text-center"
             >
               <div>
                 <div className="relative aspect-square w-full rounded-2xl bg-white border-[3px] border-[#1E2B3C] shadow-[3px_3px_0px_#1E2B3C] overflow-hidden mb-4">
@@ -47,7 +60,7 @@ export function TeamMembers() {
                   {member.name}
                 </h3>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
